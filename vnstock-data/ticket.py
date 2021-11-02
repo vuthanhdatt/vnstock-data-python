@@ -6,7 +6,7 @@ from pandas.core.frame import DataFrame
 
 #Load url
 cfg = configparser.ConfigParser()
-cfg.read('config.ini')
+cfg.read('vnstock-data\config.ini')
 company_list_url = cfg['ticket']['company_list']
 
 def load_company() -> DataFrame:
@@ -41,3 +41,4 @@ def company_ticket() -> DataFrame:
 
 if __name__ == '__main__':
     print(company_ticket())
+    # print(company_list_url)
