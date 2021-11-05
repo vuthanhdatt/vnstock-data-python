@@ -1,5 +1,9 @@
 {
     "python.analysis.extraPaths": [
         "./vnstock_data"
-    ]
+    ],
+    "python.testing.pytestArgs": [
+        "tests"
+    ],
+    "python.testing.pytestEnabled": true
 }
