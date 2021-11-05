@@ -1,21 +1,26 @@
-from ticket import company_ticket
-from data import price_data
+import data.price as price
+import data.ticket as ticket
+from base import BaseStock
 
-class VnStock(object):
+class VnStock(BaseStock):
     def __init__(self, cookies:dict) -> None:
         super().__init__()
-        self._cookies = cookies
+        self.__cookies = cookies
+        self.exchange = 'all'
+    
+    @property
+    def bussiness_type(self):
+        return ticket.get_bussiness_type()
 
-    def get_company_ticket(self):
-        return company_ticket()
-        
-    def get_company_price(self, ticket):
-        return price_data(ticket, self._cookies)
+    @property
+    def industry_type(self):
+        return ticket.get_industry_list()
+
+    def all_company_info(self, industry_type='all', bussines_type='all', basic=True):
+        return  ticket.get_all_com(self.exchange, self.__cookies, industry=industry_type, b_type=bussines_type,basic=basic)
+       
 
 
-if __name__ == '__main__':
-    a = VnStock({'PHPSESSID' : 'ioiccg4dffdsu46d58h4pepjk4'})
-    print(a.get_company_price('HPG'))
 
     
     
