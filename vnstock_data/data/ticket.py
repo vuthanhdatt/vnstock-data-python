@@ -4,7 +4,7 @@ from helpers.ticket_helper import *
 
 def get_all_com(exchange, cookies, industry= 'all', b_type='all', basic=True):
     token = get_token(cookies)
-    b_df = get_bussiness_type()
+    b_df = get_bussiness_type(cookies=cookies)
     page = 1
     r_list = []
     while True:

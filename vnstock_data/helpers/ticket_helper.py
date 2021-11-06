@@ -14,9 +14,9 @@ headers = ast.literal_eval(cfg['request']['header'])
 
 
 ###### Helper for get_all_com() ########
-def get_bussiness_type():
+def get_bussiness_type(cookies):
     url = 'https://finance.vietstock.vn/data/businesstype'
-    r = requests.get(url, headers=headers)
+    r = requests.get(url, headers=headers, cookies=cookies)
     business_alias = ['JSC','IC','SC','B','FC','OFI','FMC','AC']
     df = pd.DataFrame(r.json())
     df['Code'] = business_alias
@@ -24,9 +24,9 @@ def get_bussiness_type():
     df.rename(columns={'Title':'Name'}, inplace=True)
     return df
 
-def get_industry_list():
+def get_industry_list(cookies):
     url = 'https://finance.vietstock.vn/data/industrylist'
-    r = requests.get(url, headers=headers)
+    r = requests.get(url, headers=headers,cookies=cookies)
     r = pd.DataFrame(r.json())
     r = r.set_index('ID')
     return r
