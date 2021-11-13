@@ -14,7 +14,10 @@ headers = ast.literal_eval(cfg['request']['header'])
 
 
 ###### Helper for get_all_com() ########
-def get_bussiness_type(cookies):
+def get_business_type(cookies):
+    '''
+    Take all business type 
+    '''
     url = 'https://finance.vietstock.vn/data/businesstype'
     r = requests.get(url, headers=headers, cookies=cookies)
     business_alias = ['JSC','IC','SC','B','FC','OFI','FMC','AC']
@@ -25,6 +28,9 @@ def get_bussiness_type(cookies):
     return df
 
 def get_industry_list(cookies):
+    '''
+    Take all industry type
+    '''
     url = 'https://finance.vietstock.vn/data/industrylist'
     r = requests.get(url, headers=headers,cookies=cookies)
     r = pd.DataFrame(r.json())
@@ -32,6 +38,9 @@ def get_industry_list(cookies):
     return r
 
 def get_all_com_token(cookies):
+    '''
+    Get token session to make request to api
+    '''
     sess = requests.Session()
     url = 'https://finance.vietstock.vn/doanh-nghiep-a-z?page=1'
     r= sess.get(url,headers=headers, cookies=cookies)
@@ -41,6 +50,9 @@ def get_all_com_token(cookies):
 
 
 def make_all_com_form(exchange, industry_id, b_type, token, page, bussines_df):
+    '''
+    Make form to call to api
+    '''
     catID = {'all': '0' ,'hose':'1','hnx':'2','upcom':'5'}
     if b_type == 'all':
         b_ID = '0'
@@ -61,6 +73,10 @@ def make_all_com_form(exchange, industry_id, b_type, token, page, bussines_df):
     return f
 
 def concat_df(r_list):
+    '''
+    Due to each response only return 50 companies. We will call multi request, this fucntion help concat
+    response of each request to one final df
+    '''
     df_list = [] 
     for r in r_list:
         df_list.append(pd.DataFrame(r))

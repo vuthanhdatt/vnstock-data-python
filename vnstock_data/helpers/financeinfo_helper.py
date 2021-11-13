@@ -13,9 +13,13 @@ update_result_url = cfg['financeinfo']['update_finance_result']
 headers = ast.literal_eval(cfg['request']['header'])
 
 
-########## Helper for update bussiness result ###########
+########## Helper for update finance result ###########
 
 def get_update_result_token(cookies):
+    '''
+    Get token of session to put in form
+
+    '''
     sess = requests.Session()
     url = 'https://finance.vietstock.vn/ket-qua-kinh-doanh'
     r= sess.get(url,headers=headers, cookies=cookies)
@@ -24,6 +28,10 @@ def get_update_result_token(cookies):
     return token
 
 def make_update_result_form(token,industry_id='all'):
+    '''
+    Make form to request to api
+
+    '''
     if industry_id =='all':
         industry_id = '0'
     f = {'catID': '0',
@@ -34,6 +42,10 @@ def make_update_result_form(token,industry_id='all'):
     return f
 
 def build_df_update_result(content):
+    '''
+    Turn raw df from response to proper format
+
+    '''
     df = pd.DataFrame(content)
     col = ['StockCode','INDEX','NetProfit','Profit_DiffPreviousTerm','Profit_DiffSameTerm','Profit_Accumulated','EPS','EPS_Accumulated','PE','BVPS','NetRevenue']
     result = df.loc[:,col]

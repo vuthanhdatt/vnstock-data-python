@@ -56,6 +56,22 @@ class Hose(BaseStock):
         return price.get_market_index_history(self.exchange,start, end,cookies=self.__cookies)
     
     def all_company_info(self, industry_type='all', bussines_type='all', basic=True):
+        '''
+        Return all companies in HOSE exchange, users can choose industry type either business type. Users 
+        can also choose basic return or not. If `basic=True` return only company code and exchange 
+        where their listing. If `basic=False` return `Code`,`Name`,`IndustryName`,`TotalShares`
+
+        Paramaters
+        ----------
+        industry_type: string, industry id in :func:`~main.VnStock.industry_type`
+        b_type: string, business code in :func:`~main.VnStock.business_type`
+        basic: boolen
+
+        Return
+        ------
+        DataFrame
+        
+        '''
         com_info = ticket.get_all_com(self.exchange, self.__cookies, industry=industry_type, b_type=bussines_type,basic=basic)
         com_info.drop('Exchange',axis=1,inplace=True)
         return com_info

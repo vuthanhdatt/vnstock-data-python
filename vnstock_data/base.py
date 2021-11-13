@@ -7,7 +7,7 @@ class BaseStock(ABC):
         pass
     
     @property
-    def bussiness_type(self):
+    def business_type(self):
         pass
 
     @property

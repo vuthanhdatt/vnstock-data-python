@@ -24,8 +24,8 @@ vndata = VnStock(cookies)
 
 class TestMain:
 
-    def test_bussiness_type(self):
-        assert len(vndata.bussiness_type) == 8
+    def test_business_type(self):
+        assert len(vndata.business_type) == 8
     
     def test_industry_type(self):
         assert len(vndata.industry_type) == 20
@@ -90,5 +90,5 @@ class TestUpcom:
         assert check.loc['13-10-2021','Open'].values == 98.81
 
 if __name__ == '__main__':
-    print(hnx.all_company_info('200', 'all'))
+    print(help(upcom))
     

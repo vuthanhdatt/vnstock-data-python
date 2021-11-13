@@ -3,8 +3,24 @@ from helpers.ticket_helper import *
 
 
 def get_all_com(exchange, cookies, industry= 'all', b_type='all', basic=True):
+    '''
+    Return all companies on choosen exchange.
+
+    Paramaters
+    __________
+    exchange: string, stock exchange name, etc. hose, hnx...
+    cookies: dict, user cookies
+    industry: string, industry id in :func:`~main.VnStock.industry_type`
+    b_type: string, business code in :func:`~main.VnStock.business_type`
+    basic: boolen,
+
+    Return
+    ------
+    DataFrame
+    
+    '''
     token = get_all_com_token(cookies)
-    b_df = get_bussiness_type(cookies=cookies)
+    b_df = get_business_type(cookies=cookies)
     page = 1
     r_list = []
     while True:
@@ -16,7 +32,7 @@ def get_all_com(exchange, cookies, industry= 'all', b_type='all', basic=True):
         else:
             break
     df = concat_df(r_list)
-    if basic == True:
+    if basic:
         result = df.loc[:,['Exchange','Code']].reindex(columns=['Code','Exchange'])
     else:
         result = df.loc[:,['Exchange','Code','Name','IndustryName','TotalShares']].reindex(columns=['Code','Name','IndustryName','TotalShares','Exchange'])
