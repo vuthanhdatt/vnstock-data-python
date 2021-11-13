@@ -1,5 +1,6 @@
 import data.price as price
 import data.ticket as ticket
+import data.financeinfo as fi
 from base import BaseStock
 
 class VnStock(BaseStock):
@@ -55,6 +56,9 @@ class VnStock(BaseStock):
 
         '''
         return price.get_price_history(symbol,start,end,self.__cookies)
+    
+    def update_finance_result(self, industry='all'):
+        return fi.update_finance_result(self.__cookies, industry)
 
 
 

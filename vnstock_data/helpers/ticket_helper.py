@@ -31,7 +31,7 @@ def get_industry_list(cookies):
     r = r.set_index('ID')
     return r
 
-def get_token(cookies):
+def get_all_com_token(cookies):
     sess = requests.Session()
     url = 'https://finance.vietstock.vn/doanh-nghiep-a-z?page=1'
     r= sess.get(url,headers=headers, cookies=cookies)
@@ -40,7 +40,7 @@ def get_token(cookies):
     return token
 
 
-def make_form(exchange, industry_id, b_type, token, page, bussines_df):
+def make_all_com_form(exchange, industry_id, b_type, token, page, bussines_df):
     catID = {'all': '0' ,'hose':'1','hnx':'2','upcom':'5'}
     if b_type == 'all':
         b_ID = '0'
