@@ -90,5 +90,5 @@ class TestUpcom:
         assert check.loc['13-10-2021','Open'].values == 98.81
 
 if __name__ == '__main__':
-    print(help(upcom))
+    print(vndata.financial_ratios('HPG',False))
     

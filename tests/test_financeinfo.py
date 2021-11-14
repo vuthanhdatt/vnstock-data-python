@@ -1,6 +1,7 @@
 import os
 import ast
 import sys
+import pytest
 
 sys.path.append('vnstock_data')
 from dotenv import load_dotenv
@@ -15,6 +16,11 @@ class TestFinanceinfo:
         check = update_finance_result(cookies,'300')
         check = check[check['Symbol'] == 'GAS']
         assert check['P/E'].values == 26.9 
+
+    def test_get_ratios(self):
+        check = get_ratios(cookies,'AAA',True)
+        assert check.loc[:,'2020'][4] == 0.43
+        
 
 
 if __name__ == '__main__':

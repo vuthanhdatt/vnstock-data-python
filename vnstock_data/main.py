@@ -163,6 +163,21 @@ class VnStock(BaseStock):
         '''
         return fi.update_finance_result(self.__cookies, industry)
 
+    def financial_ratios(self, symbol, yearly=True):
+        '''
+        Return company's financial ratios e.g P/E, P/B... in history. User can choose result in quarterly or yearly.
+
+        Paramaters
+        ----------
+        symbol: string, company code
+        yearly: boolen, if False return result in quarterly
+
+        Return
+        ------
+        DataFrame
+
+        '''
+        return fi.get_ratios(self.__cookies, symbol, yearly)
 
 
     

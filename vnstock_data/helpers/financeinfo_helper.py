@@ -10,22 +10,19 @@ cfg = configparser.ConfigParser()
 cfg.read('vnstock_data\config.ini')
 
 update_result_url = cfg['financeinfo']['update_finance_result']
+finance_info_url = cfg['financeinfo']['finance_info']
 headers = ast.literal_eval(cfg['request']['header'])
 
-
-########## Helper for update finance result ###########
-
-def get_update_result_token(cookies):
-    '''
-    Get token of session to put in form
-
-    '''
+############ get token #####################
+def get_token(cookies, url):
     sess = requests.Session()
-    url = 'https://finance.vietstock.vn/ket-qua-kinh-doanh'
     r= sess.get(url,headers=headers, cookies=cookies)
     soup = BeautifulSoup(r.content, 'html5lib')
     token = soup.findAll('input', attrs={'name':'__RequestVerificationToken'})[0]['value']
     return token
+
+
+########## Helper for update finance result ###########
 
 def make_update_result_form(token,industry_id='all'):
     '''
@@ -53,9 +50,57 @@ def build_df_update_result(content):
     result = result.reindex(columns=['Symbol','NetProfit','Profit_DiffPreviousTerm(%)','Profit_DiffSameTerm(%)','Profit_Accumulated','EPS','EPS_Accumulated','P/E','BVPS','NetRevenue','Exchange'])
     return result
 
+################## RATIOS ##############
+
+def make_ratio_form(symbol, page,token, yearly= True):
+    
+    '''
+    Making form request to api
+    '''
+    f = {
+        'Code': symbol,
+        'ReportType': 'CSTC',
+        'Unit': '1000000000',
+        'Page': str(page),
+        'PageSize': '4',
+        '__RequestVerificationToken': token
+    }
+
+    if yearly:
+        f['ReportTermType'] = '1'
+    else:
+        f['ReportTermType'] = '2'
+    return f
+
+def buid_ratios_df(content, yearly):
+
+    '''
+    Help building df from raw response when request. 
+    '''
+    index = []
+    df_dict = {}
+    if yearly:
+        year = [str(content[0][i]['YearPeriod']) for i in range(len(content[0]))]
+    else:
+        year = [content[0][i]['TermCode'] + '/' + str(content[0][i]['YearPeriod']) for i in range(len(content[0]))]
+    for y in year[::-1]:
+        df_dict[y] = []
+    for k, v in content[1].items():
+        for value in v:
+            for i in range(4):
+                df_dict[year[::-1][i]].append(value[f'Value{i+1}'])
+            index.append((k,value['NameEn']))
+    df_dict = dict(reversed(list(df_dict.items())))
+    id = pd.MultiIndex.from_tuples(index, names=["Type", "Ratios"])
+    df = pd.DataFrame(df_dict, index=id)
+    result = df.loc[~df.index.duplicated(keep='first')]
+
+    return result
+
+
+
+
+
+
 if __name__ == '__main__':
-    import os
-    from dotenv import load_dotenv
-    load_dotenv('vnstock_data\.env')
-    cookies = ast.literal_eval(os.getenv('COOKIES'))
-    print(get_update_result_token(cookies))
+    pass
