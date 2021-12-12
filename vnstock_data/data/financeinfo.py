@@ -1,5 +1,5 @@
 import requests
-from helpers.financeinfo_helper import *
+from vnstock_data.helpers.financeinfo_helper import *
 
 ######## Update bussiness result ###########
 

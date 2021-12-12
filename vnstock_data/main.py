@@ -1,6 +1,6 @@
-import data.price as price
-import data.ticket as ticket
-import data.financeinfo as fi
+import vnstock_data.data.price as price
+import vnstock_data.data.ticket as ticket
+import vnstock_data.data.financeinfo as fi
 from base import BaseStock
 
 class VnStock(BaseStock):

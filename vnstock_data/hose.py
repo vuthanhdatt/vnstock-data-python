@@ -1,5 +1,5 @@
-import data.price as price
-import data.ticket as ticket
+import vnstock_data.data.price as price
+import vnstock_data.data.ticket as ticket
 from base import BaseStock
 
 

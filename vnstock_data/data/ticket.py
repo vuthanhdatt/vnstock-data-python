@@ -1,5 +1,5 @@
 import requests
-from helpers.ticket_helper import *
+from vnstock_data.helpers.ticket_helper import *
 
 
 def get_all_com(exchange, cookies, industry= 'all', b_type='all', basic=True):

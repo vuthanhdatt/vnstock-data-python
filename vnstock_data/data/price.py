@@ -1,5 +1,5 @@
 import requests
-from helpers.price_helper import *
+from vnstock_data.helpers.price_helper import *
 
 
 def get_market_index_history(exchange, start, end, cookies):
