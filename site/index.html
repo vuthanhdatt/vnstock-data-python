@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="None">
+  <meta name="author" content="Vu Thanh Dat">
+  
+  <link rel="shortcut icon" href="img/favicon.ico">
+  <title>Vietnam Stock Data</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="css/theme.css" />
+  <link rel="stylesheet" href="css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Getting started";
+    var mkdocs_page_input_path = "index.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="js/jquery-2.1.1.min.js" defer></script>
+  <script src="js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href="." class="icon icon-home"> Vietnam Stock Data</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href=".">Getting started</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#usage">Usage</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#example">Example</a>
+    </li>
+    </ul>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="api/">API Reference</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href=".">Vietnam Stock Data</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Getting started</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/vuthanhdatt/vnstock-data-python/edit/master/docs/index.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="welcome-to-vietnam-stock-data-package">Welcome to Vietnam Stock Data Package</h1>
+<p>This package bringing an easy way to access to Vietnam Stock data.</p>
+<h2 id="installation">Installation</h2>
+<p>Easy install via pip </p>
+<p><code>pip install git+https://github.com/vuthanhdatt/vnstock-data-python.git</code></p>
+<p>User can also install a specific version</p>
+<p><code>pip install git+https://github.com/vuthanhdatt/vnstock-data-python.git@version_name</code></p>
+<p>Example:</p>
+<p><code>pip install git+https://github.com/vuthanhdatt/vnstock-data-python.git@v.0.1</code></p>
+<p>Or using git</p>
+<p><code>git clone https://github.com/vuthanhdatt/vnstock-data-python.git</code></p>
+<p>With specific version</p>
+<p><code>git clone -b brach_name https://github.com/vuthanhdatt/vnstock-data-python.git</code></p>
+<h2 id="usage">Usage</h2>
+<p>In order to use this package, user need obtain Vietstock cookies. Here's instruction how to obtain it.</p>
+<ol>
+<li>Go to <a href="'https://finance.vietstock.vn/">Vietstock finance</a></li>
+<li>Log in to website, if you don't have account, register one.</li>
+<li>Press <code>F12</code>, go to tab Application</li>
+<li>Choose <em>Cookies</em> with <code>https://finance.vietstock.vn/</code> url</li>
+</ol>
+<p><img alt="inspect-cookies" src="images/inspect-cookies.png" /></p>
+<p>There are 3 value we need to take, <code>vts_usr_lg</code>, <code>__RequestVerificationToken</code>, <code>language</code>. Store these value in a dict, for example:</p>
+<pre class="codehilite"><code>COOKIES={&quot;vts_usr_lg&quot;:&quot;ABCDEF&quot;,&quot;language&quot;: &quot;en-US&quot;,&quot;__RequestVerificationToken&quot;:&quot;GhijKL&quot;}
+</code></pre>
+
+<p>Now, you can using this cookies to access data with this package.</p>
+<h2 id="example">Example</h2>
+<p>After installation, user can import package into <code>.py</code> file. For example, user can get price history of company with this code below:</p>
+<pre><code class="language-py">from vnstock_data.all_exchange import VnStock
+
+COOKIES={&quot;vts_usr_lg&quot;:&quot;ABCDEF&quot;,&quot;language&quot;: &quot;en-US&quot;,&quot;__RequestVerificationToken&quot;:&quot;GhijKL&quot;}
+
+vndata = VnStock(COOKIES)
+
+vndata.price('FTS', '02-05-2021','11-05-2021')
+&gt;&gt;&gt;                 High    Low   Open  Close   Volume  Adj Close  Average  High-Low
+        Date
+        2021-11-05  74000  69500  73500  71200   941700      71200    71833      4500
+        2021-11-04  75000  70500  70500  73300   955800      73300    72710      4500
+        2021-11-03  72000  68300  68300  70500  1334000      70500    70361      3700
+        2021-11-02  68500  66600  67000  68000  1293500      68000    67503      1900
+        2021-11-01  66300  62000  62700  66300  1389900      66300    64771      4300
+        ...           ...    ...    ...    ...      ...        ...      ...       ...
+        2021-02-18  17200  16650  16900  16800   533700      15000    16912       550
+        2021-02-17  16800  16150  16400  16800   563900      15000    16444       650
+        2021-02-09  16100  15500  15700  15900   382000      14200    15830       600
+        2021-02-08  16500  15400  16400  15700   590500      14000    16088      1100
+        2021-02-05  16500  16000  16150  16350   258000      14600    16248       500
+</code></pre>
+<p>Or user can get market index:</p>
+<pre><code class="language-py">from vnstock_data.hose import Hose
+hose = Hose(COOKIES)
+hose.market_index('02-05-2021','11-05-2021')
+&gt;&gt;&gt;                     PreClose     Open    Close     High      Low Change(%)      Volume     MarketCap
+            Date
+            2021-11-05   1448.34  1450.71  1456.51  1459.49  1444.51      0.56   874070856  5.648438e+09
+            2021-11-04   1444.30  1442.89  1448.34  1451.98  1435.84      0.28   929526879  5.616765e+09
+            2021-11-03   1452.46  1460.44  1444.30  1463.63  1444.30     -0.56  1505103001  5.597664e+09
+            2021-11-02   1438.97  1439.61  1452.46  1452.46  1438.83      0.94  1009457944  5.625759e+09
+            2021-11-01   1444.27  1449.32  1438.97  1451.81  1435.57     -0.37  1132355594  5.573175e+09
+            ...              ...      ...      ...      ...      ...       ...         ...           ...
+            2021-02-18   1155.78  1157.10  1174.38  1174.38  1148.66      1.61   614819219  4.424568e+09
+            2021-02-17   1114.93  1127.46  1155.78  1151.54  1127.46      3.66   507695043  4.355273e+09
+            2021-02-09   1083.18  1090.88  1114.93  1114.93  1078.98      2.93   519814193  4.201332e+09
+            2021-02-08   1126.91  1127.06  1083.18  1127.06  1075.10     -3.88   696599614  4.078789e+09
+            2021-02-05   1112.19  1114.79  1126.91  1126.91  1112.19      1.32   529870404  4.243698e+09
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="api/" class="btn btn-neutral float-right" title="API Reference">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/vuthanhdatt/vnstock-data-python/" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+    
+      <span><a href="api/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '.';</script>
+    <script src="js/theme_extra.js" defer></script>
+    <script src="js/theme.js" defer></script>
+      <script src="search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
+
+<!--
+MkDocs version : 1.2.3
+Build Date UTC : 2021-12-12 13:55:54.578674+00:00
+-->
