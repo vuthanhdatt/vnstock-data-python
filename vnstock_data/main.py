@@ -1,7 +1,7 @@
 import vnstock_data.data.price as price
 import vnstock_data.data.ticket as ticket
 import vnstock_data.data.financeinfo as fi
-from base import BaseStock
+from vnstock_data.base import BaseStock
 
 class VnStock(BaseStock):
     def __init__(self, cookies:dict) -> None:

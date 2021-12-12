@@ -1,6 +1,6 @@
 import vnstock_data.data.price as price
 import vnstock_data.data.ticket as ticket
-from base import BaseStock
+from vnstock_data.base import BaseStock
 
 class Hnx(BaseStock):
     def __init__(self, cookies) -> None:
