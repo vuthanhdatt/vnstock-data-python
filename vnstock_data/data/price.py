@@ -45,7 +45,7 @@ def get_price_history(symbol,start,end, cookies):
     '''
 
     form = make_price_history_form(symbol,start,end)
-    r = requests.get(price_hisory_url, headers= headers, data=form, cookies= cookies)
+    r = requests.get(price_history_url, headers= headers, data=form, cookies= cookies)
     df = pd.read_html(r.text)[1]
     result = make_price_history_df(df)
     

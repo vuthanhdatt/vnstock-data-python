@@ -1,16 +1,13 @@
-import ast
 import requests
-import configparser
 import pandas as pd
 from bs4 import BeautifulSoup
 
 
 #Load url
-cfg = configparser.ConfigParser()
-cfg.read('vnstock_data\config.ini')
 
-company_list_url = cfg['ticket']['company_list']
-headers = ast.literal_eval(cfg['request']['header'])
+company_list_url = 'https://finance.vietstock.vn/data/corporateaz'
+headers = {'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.54 Safari/537.36 Edg/95.0.1020.40'}
+
 
 
 ###### Helper for get_all_com() ########

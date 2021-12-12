@@ -1,16 +1,13 @@
 import io
-import ast
-import configparser
 import pandas as pd
 
 
 # Load url and headers
-cfg = configparser.ConfigParser()
-cfg.read('vnstock_data\config.ini')
 
-headers = ast.literal_eval(cfg['request']['header'])
-market_index_url = cfg['price']['market_index']
-price_hisory_url = cfg['price']['price_history']
+headers = {'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.54 Safari/537.36 Edg/95.0.1020.40'}
+market_index_url = 'https://finance.vietstock.vn/export/KQGDPriceByCode'
+price_history_url = 'https://finance.vietstock.vn/data/ExportTradingResult'
+
 
 
 ############helper for market index#################

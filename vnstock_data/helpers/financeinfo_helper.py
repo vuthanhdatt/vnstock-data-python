@@ -1,17 +1,15 @@
-import ast
 import requests
-import configparser
 import pandas as pd
 from bs4 import BeautifulSoup
 
 
 #Load url
-cfg = configparser.ConfigParser()
-cfg.read('vnstock_data\config.ini')
 
-update_result_url = cfg['financeinfo']['update_finance_result']
-finance_info_url = cfg['financeinfo']['finance_info']
-headers = ast.literal_eval(cfg['request']['header'])
+
+update_result_url= 'https://finance.vietstock.vn/data/allkqkdorder'
+finance_info_url = 'https://finance.vietstock.vn/data/financeinfo'
+headers = {'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.54 Safari/537.36 Edg/95.0.1020.40'}
+
 
 ############ get token #####################
 def get_token(cookies, url):
