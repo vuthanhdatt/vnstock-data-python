@@ -4,7 +4,7 @@ import sys
 
 
 sys.path.append('vnstock_data')
-from main import VnStock
+from all_exchange import VnStock
 from hnx import Hnx
 from hose import Hose
 from upcom import UpCom

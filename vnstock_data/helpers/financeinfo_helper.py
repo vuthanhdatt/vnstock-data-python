@@ -48,16 +48,13 @@ def build_df_update_result(content):
     result = result.reindex(columns=['Symbol','NetProfit','Profit_DiffPreviousTerm(%)','Profit_DiffSameTerm(%)','Profit_Accumulated','EPS','EPS_Accumulated','P/E','BVPS','NetRevenue','Exchange'])
     return result
 
-################## RATIOS ##############
 
-def make_ratio_form(symbol, page,token, yearly= True):
+
+def make_finance_info_form(symbol, page,token,indicator, yearly= True):
     
-    '''
-    Making form request to api
-    '''
     f = {
         'Code': symbol,
-        'ReportType': 'CSTC',
+        'ReportType': indicator,
         'Unit': '1000000000',
         'Page': str(page),
         'PageSize': '4',
@@ -70,6 +67,7 @@ def make_ratio_form(symbol, page,token, yearly= True):
         f['ReportTermType'] = '2'
     return f
 
+################## RATIOS ##############
 def buid_ratios_df(content, yearly):
 
     '''
@@ -96,6 +94,29 @@ def buid_ratios_df(content, yearly):
     return result
 
 
+############# CONDENSED BS ############
+
+def build_condensed_bs_df(content, yearly):
+    index = []
+    df_dict = {}
+    if yearly:
+        year = [str(content[0][i]['YearPeriod']) + '(' + content[0][i]['United'] + '/'\
+                    + content[0][i]['AuditedStatus'] +')'for i in range(len(content[0]))]
+    else:
+        year = [content[0][i]['TermCode']  +'/'+ str(content[0][i]['YearPeriod']) + '(' + content[0][i]['United'] + '/'\
+                    + content[0][i]['AuditedStatus'] +')' for i in range(len(content[0]))]
+    for y in year[::-1]:
+        df_dict[y] = []
+    for k, v in content[1].items():
+        for value in v:
+            for i in range(4):
+                df_dict[year[::-1][i]].append(value[f'Value{i+1}'])
+            index.append((k,value['NameEn']))
+    df_dict = dict(reversed(list(df_dict.items())))
+    id = pd.MultiIndex.from_tuples(index, names=["Type", "Ratios"])
+    df = pd.DataFrame(df_dict, index=id)
+    result = df.loc[~df.index.duplicated(keep='first')]
+    return result
 
 
 

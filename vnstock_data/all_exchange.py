@@ -11,7 +11,7 @@ class VnStock(BaseStock):
     
     @property
     def business_type(self):
-        '''
+        """
         Return companies type in market
         
         Return
@@ -33,14 +33,14 @@ class VnStock(BaseStock):
             FMC        Fund Management Company
             AC                Auditing Company
 
-        '''
+        """
         result =  ticket.get_business_type(self.__cookies)
         result.set_index('Code', inplace=True)
         return result
 
     @property
     def industry_type(self):
-        '''
+        """
         Return industry type in market
         
         Return
@@ -72,11 +72,11 @@ class VnStock(BaseStock):
             1900      Other Services (except Public Administration)
             700                                        Retail Trade
 
-        '''
+        """
         return ticket.get_industry_list(self.__cookies)
 
     def all_company_info(self, industry_type='all', business_type='all', basic=True):
-        '''
+        """
         Return all companies, users can choose industry type either business type. Users can also
         basic return or not. If `basic=True` return only company code and exchange where their listing. 
         If `basic=False` return `Code`,`Name`,`IndustryName`,`TotalShares`,`Exchange`
@@ -91,11 +91,11 @@ class VnStock(BaseStock):
         ------
         DataFrame
         
-        '''
+        """
         return  ticket.get_all_com(self.exchange, self.__cookies, industry=industry_type, b_type=business_type,basic=basic)
     
     def price(self, symbol, start, end):
-        '''
+        """
         Return price data of choosen company from starting date to ending date.
         Data include `High`, `Low`, `Open`, `Close`, `Volume`, `Adj Close`, `Average`, `High-Low`
         In future update, I will support taking multi companies.
@@ -128,11 +128,11 @@ class VnStock(BaseStock):
             2021-02-08  16500  15400  16400  15700   590500      14000    16088      1100
             2021-02-05  16500  16000  16150  16350   258000      14600    16248       500
 
-        '''
+        """
         return price.get_price_history(symbol,start,end,self.__cookies)
     
     def update_finance_result(self, industry='all'):
-        '''
+        """
         Return up to date finance result of current quarter.
 
         Note that the result depend on Vietstock update progess, so may be the result don't has companies
@@ -160,11 +160,11 @@ class VnStock(BaseStock):
             10    PSW   23.377377                        93.8                 10378.5  ...   11.2  13045   565.896915       HNX
             11    SSC    8.384454                       -49.7                   -42.0  ...   16.5  26177    60.051648      HOSE
 
-        '''
+        """
         return fi.update_finance_result(self.__cookies, industry)
 
     def financial_ratios(self, symbol, yearly=True):
-        '''
+        """
         Return company's financial ratios e.g P/E, P/B... in history. User can choose result in quarterly or yearly.
 
         Paramaters
@@ -176,8 +176,24 @@ class VnStock(BaseStock):
         ------
         DataFrame
 
-        '''
+        """
         return fi.get_ratios(self.__cookies, symbol, yearly)
+
+    def condensed_balance_sheet(self, symbol, yearly=True):
+        """
+        Return company's condensed balance sheet in history. User can choose result in quarterly or yearly.
+
+        Paramaters
+        ----------
+        symbol: string, company code
+        yearly: boolen, if False return result in quarterly
+
+        Return
+        ------
+        DataFrame
+
+        """
+        return fi.get_condensed_bs(self.__cookies,symbol,yearly)
 
 
     
