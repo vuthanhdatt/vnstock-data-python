@@ -1,6 +1,6 @@
-import setuptools
+from setuptools import setup, find_packages
 
-setuptools.setup(
+setup(
     name='vnstock_data',
     version='0.1',
     author='Vu Thanh Dat',
@@ -13,6 +13,6 @@ setuptools.setup(
         "Bug Tracker": "https://github.com/vuthanhdatt/vnstock-data-python/issues"
     },
     license='MIT',
-    packages=['vnstock_data'],
+    packages=find_packages(),
     install_requires=['requests','beautifulsoup4','pandas'],
 )

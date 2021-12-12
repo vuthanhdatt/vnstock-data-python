@@ -108,4 +108,4 @@ if __name__ == '__main__':
     # #     df = vndata.price(c,'01-01-2000','11-18-2021')
     # #     df.to_csv(f'C:\\Users\\Milky\\OneDrive - VNU-HCMUS\\Kinh doanh\\STOCK MARKET\\python-ta\\data\\hose\\{c}.csv',index=True)
     # print(datetime.now()-start)
-    pass
+    print(vndata.business_type)
