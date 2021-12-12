@@ -8,8 +8,5 @@ theme:
 nav:
     - Getting started: index.md
     - API Reference: api.md
-markdown_extensions:
-    codehilite:
-        use_pygments: False
 
     
