@@ -1,0 +1,15 @@
+site_name: Vietnam Stock Data
+repo_url: https://github.com/vuthanhdatt/vnstock-data-python
+site_author: Vu Thanh Dat
+
+theme:
+    name: readthedocs
+    highlightjs: true
+nav:
+    - Getting started: index.md
+    - API Reference: api.md
+markdown_extensions:
+    codehilite:
+        use_pygments: False
+
+    

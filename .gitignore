@@ -1,3 +1,5 @@
 **.ipynb
 .env
 __pycache__/
+test_aiohttp*
+.pytest_cache/
