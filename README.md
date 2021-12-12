@@ -12,6 +12,8 @@ Inspire from [pandas-datareader](https://pandas-datareader.readthedocs.io/en/lat
 
 User need to obtain Vietstock cookies to access data from their website. See more at [docs](https://vnstock-data-python.readthedocs.io/en/latest/#usage).
 
+User can also check this [colab](https://colab.research.google.com/drive/1dPL33TAFqKGWu8L9QL-Z2SRS_4OsMelu?usp=sharing) to understand how to use this package.
+
 ## 4. Example
 Get OHLCV data of `FTS` from `05-02-2021` to `05-11-2021` 
 ```py
