@@ -16,13 +16,6 @@ Example:
 
 `pip install git+https://github.com/vuthanhdatt/vnstock-data-python.git@v.0.1`
 
-Or using git
-
-`git clone https://github.com/vuthanhdatt/vnstock-data-python.git`
-
-With specific version
-
-`git clone -b brach_name https://github.com/vuthanhdatt/vnstock-data-python.git`
 
 ## Usage
 
