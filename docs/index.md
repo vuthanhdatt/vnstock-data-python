@@ -21,7 +21,7 @@ Example:
 
 In order to use this package, user need obtain Vietstock cookies. Here's instruction how to obtain it.
 
-1. Go to [Vietstock finance]('https://finance.vietstock.vn/)
+1. Go to [Vietstock finance](https://finance.vietstock.vn/)
 2. Log in to website, if you don't have account, register one.
 3. Press `F12`, go to tab Application
 4. Choose *Cookies* with `https://finance.vietstock.vn/` url
