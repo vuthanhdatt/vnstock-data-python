@@ -14,5 +14,5 @@ setup(
     },
     license='MIT',
     packages=find_packages(),
-    install_requires=['requests','beautifulsoup4','pandas','wheel','lxml','html5lib','xlrd=2.0.1'],
+    install_requires=['requests','beautifulsoup4','pandas','wheel','lxml','html5lib','xlrd>=1.2.0'],
 )
